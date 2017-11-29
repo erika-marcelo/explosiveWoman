@@ -1,9 +1,9 @@
 var mainState = {
     preload: function() {
-//        this.game.load.image('player', 'assets/player.PNG');
-//        this.game.load.image('wall', 'assets/wall.PNG');
-//        this.game.load.image('coin', 'assets/coin.PNG');
-//        this.game.load.image('enemy', 'assets/lava.PNG');
+//        this.game.load.image('player', 'wall.PNG');
+        this.game.load.image('wall', 'wall.PNG');
+//        this.game.load.image('coin', 'wall.PNG');
+//        this.game.load.image('enemy', 'wall.PNG');
     },
     
     create: function() {
@@ -24,13 +24,32 @@ var mainState = {
         //x = wall    o = coin    ! = enemy/lava
         
         var level = [
-            'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            '!         !                               x',
-            '!                 o        o         o    x',
-            '!         o                     !         x',
-            '!                    x                    x',
-            '!     o   !    x     x        o      o    x',
-            'xxxxxxxxxxxxxxxx!!!!!xxxxxxxxxxxxxxxxxxxxxx',
+            'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            'x                         x',
+            'x                         x',
+            'x   xxxxxx  xx    xxxxxxxxx',        
+            'x   x  !x   x             x',
+            'x   x   x   x             x',
+            'x   x   x   x   xxxxxx    x',
+            'x   x  !x   x        x    x',
+            'x   x   x   x        x    x',
+            'x                xxxxxx   x',
+            'xxxxx   x   xxxxxx        x',
+            'xxxxx   x   x   x   xxxxxxx',
+            'x   x   x   x   x         x',
+            'x   xxxxx   x   x         x',
+            'x !             x         x',
+            'x   x           x   xxxxxxx',
+            'x   x   x   x   x         x',
+            'x   x   x       x         x',
+            'x   x   x       x         x',            
+            'x   x   xxxxxxxxx         x',
+            'x                         x',
+            'x                         x',
+            'x                         x',
+            'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
+        
+        
         ];
         
         for (var i = 0; i < level.length; i++) {
@@ -58,11 +77,11 @@ var mainState = {
     update: function() {
         this.game.physics.arcade.collide(this.player, this.walls);
 
-//        this.game.physics.arcade.overlap(this.player, this.coins, this.takeCoin, null, this);  don't need this yet
+        this.game.physics.arcade.overlap(this.player, this.coins, this.takeCoin, null, this);  //don't need this yet
 
         this.game.physics.arcade.overlap(this.player, this.enemies, this.restart, null, this);
         
-//        if(this.cursor.left.isDown)
+//        if(this.cursor.left.isDown)    
 //            this.player.body.velocity.x = -200;
 //        else if (this.cursor.right.isDown)
 //            this.player.body.velocity.x = 200;
