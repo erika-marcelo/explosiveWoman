@@ -1,7 +1,14 @@
 var mainState = {
     preload: function() {
-       this.game.load.image('player', 'wall.PNG');
+//      
         this.game.load.image('wall', 'wall.PNG');
+        this.game.load.image('bomb','assets/bomb.png');
+        this.game.load.image('explosion','assets/Explosion.jpg');
+        this.game.load.image('player','assets/character.jpg');
+        this.game.load.spritesheet('slime','assets/Slime.jpg', 65, 75);
+        this.game.load.spritesheet('police','assets/Slime.jpg', 65, 75);
+        this.game.load.image('trump','assets/Trump.png');
+        
 //        this.game.load.image('coin', 'wall.PNG');
 //        this.game.load.image('enemy', 'wall.PNG');
     },
@@ -13,7 +20,7 @@ var mainState = {
         
         this.cursor = this.game.input.keyboard.createCursorKeys();
         
-        this.player = this.game.add.sprite(70, 100, 'player');
+//        this.player = this.game.add.sprite(70, 100, 'player');
         
 //        this.player.body.gravity.y = 600;  just don't need this
         
@@ -21,7 +28,7 @@ var mainState = {
         this.coins = this.game.add.group();
         this.enemies = this.game.add.group();
         
-        //x = wall    o = coin    ! = enemy/lava
+        //x = wall    o = coin    ! = police   s = slime    t = trump  p = player
         
         var level = [
             'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
@@ -47,8 +54,7 @@ var mainState = {
             'x   x    xxxxxxxxxxxxxx     x           x',
             'x   x          x  o         x           x',
             'x   x                       x           x',
-            'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-        
+            'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',        
         
         ];
         
@@ -67,8 +73,13 @@ var mainState = {
                 }
 
                 else if (level[i][j] == '!') {
-                    var enemy = game.add.sprite(30+20*j, 30+20*i, 'enemy');
-                    this.enemies.add(enemy);
+                    var police = game.add.sprite(30+20*j, 30+20*i, 'police');
+                    this.enemies.add(police);
+                }
+                
+                if (level[i][j] == 's') {
+                    var slime = game.add.sprite(30+20*j, 30+20*i, 'slime');
+                    this.enemies.add(slime);
                 }
             }
         }
